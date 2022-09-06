@@ -38,4 +38,5 @@ open class BaseUiModel() : BaseObservable(), Parcelable, BaseHandler<BaseUiModel
     }
 
     open fun isRecyclable() = true
+    open fun onViewDetachedFromWindow() {}
 }
