@@ -1,4 +1,4 @@
-package com.babapanda.gitpr.ui.main
+package com.babapanda.gitpr.presentation.ui.main
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -9,7 +9,6 @@ import com.babapanda.gitpr.R
 import com.babapanda.gitpr.base.BaseFragment
 import com.babapanda.gitpr.base.BaseHandler
 import com.babapanda.gitpr.base.BaseUiModel
-import javax.inject.Inject
 
 class MainFragment : BaseFragment(), BaseHandler<BaseUiModel> {
 

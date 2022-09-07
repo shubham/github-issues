@@ -1,6 +1,6 @@
 package com.babapanda.gitpr.di
 
-import com.babapanda.gitpr.MainActivity
+import com.babapanda.gitpr.presentation.ui.main.MainActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

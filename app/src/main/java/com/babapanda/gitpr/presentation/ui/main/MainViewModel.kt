@@ -1,4 +1,4 @@
-package com.babapanda.gitpr.ui.main
+package com.babapanda.gitpr.presentation.ui.main
 
 import com.babapanda.gitpr.base.BaseViewModel
 import com.babapanda.gitpr.domain.usecase.GetClosePRUseCase

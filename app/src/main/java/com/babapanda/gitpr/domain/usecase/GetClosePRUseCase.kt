@@ -1,6 +1,5 @@
 package com.babapanda.gitpr.domain.usecase
 
-import com.babapanda.gitpr.data.model.PullRequestDTO
 import com.babapanda.gitpr.domain.model.PullRequest
 import com.babapanda.gitpr.domain.repository.GitHubRepository
 import com.babapanda.gitpr.util.Resource
