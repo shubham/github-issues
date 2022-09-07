@@ -37,6 +37,11 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    gradle.projectsEvaluated {
+        tasks.withType(JavaCompile) {
+            options.compilerArgs << "-Xmaxerrs" << "500" // or whatever number you want
+        }
+    }
 }
 def lifecycle_version = '2.3.1'
 def retrofitVersion = '2.9.0'
@@ -45,7 +50,7 @@ def rxJavaVersion = '2.2.21'
 def rxJavaAndroidVersion = '2.0.2'
 def lifeCycleExtensionsVersion = '1.1.1'
 def daggerVersion = "2.41"
-def kotlin_version = "1.7.10"
+def kotlin_version = "1.6.0"
 
 dependencies {
 

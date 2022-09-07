@@ -1,7 +1,7 @@
 package com.babapanda.gitpr.ui.main
 
-import androidx.lifecycle.ViewModel
+import com.babapanda.gitpr.base.BaseViewModel
 
-class MainViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
+class MainViewModel : BaseViewModel() {
+
 }
