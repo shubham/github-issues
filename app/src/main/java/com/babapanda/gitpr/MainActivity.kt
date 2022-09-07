@@ -1,10 +1,10 @@
 package com.babapanda.gitpr
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.babapanda.gitpr.base.BaseActivity
 import com.babapanda.gitpr.ui.main.MainFragment
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
