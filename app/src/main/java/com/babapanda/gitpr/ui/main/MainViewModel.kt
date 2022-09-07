@@ -1,7 +1,11 @@
 package com.babapanda.gitpr.ui.main
 
 import com.babapanda.gitpr.base.BaseViewModel
+import com.babapanda.gitpr.domain.usecase.GetClosePRUseCase
+import javax.inject.Inject
 
-class MainViewModel : BaseViewModel() {
+class MainViewModel @Inject constructor(
+    private val getClosePRUseCase: GetClosePRUseCase
+) : BaseViewModel() {
 
 }
