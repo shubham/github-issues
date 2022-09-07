@@ -7,20 +7,18 @@ import android.view.View
 import android.view.ViewGroup
 import com.babapanda.gitpr.R
 import com.babapanda.gitpr.base.BaseFragment
-import com.babapanda.gitpr.di.GitprViewModelFactory
+import com.babapanda.gitpr.base.BaseHandler
+import com.babapanda.gitpr.base.BaseUiModel
 import javax.inject.Inject
 
-class MainFragment : BaseFragment() {
+class MainFragment : BaseFragment(), BaseHandler<BaseUiModel> {
 
     companion object {
         fun newInstance() = MainFragment()
     }
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-
     private val viewModel: MainViewModel by lazy {
-        ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
+        ViewModelProvider(this).get(MainViewModel::class.java)
     }
 
     override fun onCreateView(
@@ -28,6 +26,10 @@ class MainFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View {
         return inflater.inflate(R.layout.fragment_main, container, false)
+    }
+
+    override fun onclick(view: View, data: BaseUiModel) {
+
     }
 
 }
