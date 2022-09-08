@@ -1,12 +1,24 @@
 package com.babapanda.gitpr.base
 
 import androidx.lifecycle.ViewModel
+import com.babapanda.gitpr.util.ResourceProvider
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.BehaviorSubject
 
-open class BaseViewModel : ViewModel() {
+open class BaseViewModel(private val resourceProvider: ResourceProvider) : ViewModel() {
 
     var dialogLoadingObservable: BehaviorSubject<String> = BehaviorSubject.create<String>()
     var apiCallInProgress: Boolean = false
+    var compositeDisposable: CompositeDisposable? = null
+
+    init {
+        compositeDisposable = CompositeDisposable()
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        compositeDisposable?.clear()
+    }
 
     open fun callInProgress() {
         apiCallInProgress = true
