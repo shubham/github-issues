@@ -13,4 +13,49 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="TitleStyle" parent="TextAppearance.Material3.ActionBar.Title">
+        <item name="android:textSize">@dimen/text_size_20sp</item>
+        <item name="android:textColor">@color/title_color</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
+    <style name="ItemSubTitleStyle" parent="TextAppearance.Material3.TitleSmall">
+        <item name="android:textSize">@dimen/text_size_12sp</item>
+        <item name="android:textColor">@color/item_title_color</item>
+    </style>
+
+    <style name="ItemTitleStyle" parent="TextAppearance.Material3.TitleMedium">
+        <item name="android:textSize">@dimen/text_size_16sp</item>
+        <item name="android:textColor">@color/item_title_color</item>
+    </style>
+
+    <style name="ItemDescriptionStyle" parent="TextAppearance.Material3.TitleMedium">
+        <item name="android:textSize">@dimen/text_size_12sp</item>
+        <item name="android:textColor">@color/item_title_color</item>
+    </style>
+
+    <style name="ItemExtraStyle" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:textSize">@dimen/text_size_12sp</item>
+        <item name="android:textColor">@color/item_title_color</item>
+        <item name="android:maxHeight">@dimen/margin_16dp</item>
+    </style>
+
+    <style name="ButtonRetryStyle" parent="TextAppearance.MaterialComponents.Button">
+        <item name="android:textSize">@dimen/text_size_16sp</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:opacity">translucent</item>
+    </style>
+
+    <style name="ErrorTitleStyle" parent="TextAppearance.Material3.TitleMedium">
+        <item name="android:textSize">@dimen/text_size_18sp</item>
+        <item name="android:textColor">@color/error_title_color</item>
+        <item name="android:opacity">translucent</item>
+    </style>
+
+    <style name="ErrorMessageStyle" parent="TextAppearance.Material3.TitleMedium">
+        <item name="android:textSize">@dimen/text_size_16sp</item>
+        <item name="android:textColor">@color/error_message_color</item>
+        <item name="android:opacity">translucent</item>
+    </style>
 </resources>
