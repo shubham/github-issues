@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 open class BaseAdapter<T : BaseUiModel> : RecyclerView.Adapter<BaseViewHolder<T>> {
     private lateinit var mRecyclerView: RecyclerView
     private var layoutResource = 0
-    var handler: BaseHandler<T>? = null
+    var handler: BaseHandler<*>? = null
     private var viewModel: BaseViewModel? = null
     private var lastPosition = -1
     private var type: String? = null
@@ -34,7 +34,7 @@ open class BaseAdapter<T : BaseUiModel> : RecyclerView.Adapter<BaseViewHolder<T>
 
     constructor(
         layoutResource: Int,
-        handler: BaseHandler<T>?,
+        handler: BaseHandler<*>?,
         type: String? = null
     ) {
         this.layoutResource = layoutResource
@@ -45,7 +45,7 @@ open class BaseAdapter<T : BaseUiModel> : RecyclerView.Adapter<BaseViewHolder<T>
     constructor(
         layoutResource: Int,
         viewModel: BaseViewModel?,
-        handler: BaseHandler<T>? = null,
+        handler: BaseHandler<*>? = null,
         type: String? = null
     ) {
         this.layoutResource = layoutResource
@@ -77,6 +77,11 @@ open class BaseAdapter<T : BaseUiModel> : RecyclerView.Adapter<BaseViewHolder<T>
         )
     }
 
+    fun updateData(newData: List<T>) {
+        val fromIndex = listOfItems.size
+        listOfItems = newData.toMutableList()
+        notifyItemRangeInserted(fromIndex, newData.size)
+    }
     override fun getItemViewType(position: Int): Int {
         return if (layoutResource != 0) {
             layoutResource

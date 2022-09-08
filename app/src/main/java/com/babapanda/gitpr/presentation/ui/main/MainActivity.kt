@@ -1,9 +1,11 @@
-package com.babapanda.gitpr
+package com.babapanda.gitpr.presentation.ui.main
 
 import android.os.Bundle
+import com.babapanda.gitpr.R
 import com.babapanda.gitpr.base.BaseActivity
-import com.babapanda.gitpr.ui.main.MainFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -11,8 +13,8 @@ class MainActivity : BaseActivity() {
         setContentView(R.layout.activity_main)
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                    .replace(R.id.container, MainFragment.newInstance())
-                    .commitNow()
+                .replace(R.id.container, MainFragment.newInstance())
+                .commitNow()
         }
     }
 }

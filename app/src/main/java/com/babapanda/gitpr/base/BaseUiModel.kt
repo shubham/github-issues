@@ -5,7 +5,7 @@ import android.os.Parcelable
 import android.view.View
 import androidx.databinding.BaseObservable
 
-open class BaseUiModel() : BaseObservable(), Parcelable, BaseHandler<BaseUiModel>{
+open class BaseUiModel() : BaseObservable(), Parcelable, BaseHandler<BaseUiModel> {
     var layoutResId: Int = 0
 
     var adapterPosition = -1
@@ -14,6 +14,10 @@ open class BaseUiModel() : BaseObservable(), Parcelable, BaseHandler<BaseUiModel
 
     constructor(parcel: Parcel) : this() {
         layoutResId = parcel.readInt()
+    }
+
+    constructor(layoutResId: Int) : this() {
+        this.layoutResId = layoutResId
     }
 
     override fun describeContents(): Int {

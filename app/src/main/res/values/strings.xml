@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">Github-Issues</string>
+
+    <string name="text_retry">Retry</string>
+    <string name="text_error_common_title">Something went wrong..</string>
+    <string name="text_error_common_message">An alien is probably blocking your signal.</string>
+    <string name="network_error">Please Check Your Internet</string>
+
+    <string name="text_repo_image">Repository Image</string>
+    <string name="text_stars">stars</string>
+    <string name="text_forks">forks</string>
+    <string name="text_language">Language</string>
+    <string name="text_closed_date">Closed Date - </string>
+    <string name="text_created_date">Created Date - </string>
+    <string name="text_sort_by_name">Sort by name</string>
+    <string name="text_sort_by_stars">Sort by stars</string>
+    <string name="text_load_more">Load More</string>
 </resources>

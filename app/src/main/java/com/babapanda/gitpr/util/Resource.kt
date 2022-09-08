@@ -1,7 +1,7 @@
 package com.babapanda.gitpr.util
 
 sealed class Resource<T>(val isSuccess: Boolean, val message: String? = null) {
-    class Success<T>(data: T?, message: String? = null) : Resource<T>(
+    class Success<T>(val data: T?, message: String? = null) : Resource<T>(
         true,
         message = message
     )

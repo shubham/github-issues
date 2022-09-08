@@ -1,6 +1,6 @@
 package com.babapanda.gitpr.base
 
-import dagger.android.support.DaggerFragment
+import androidx.fragment.app.Fragment
 
-abstract class BaseFragment: DaggerFragment() {
+abstract class BaseFragment: Fragment() {
 }
