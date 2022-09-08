@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="obj"
+            type="com.babapanda.gitpr.presentation.model.LoadMoreUiModel" />
+
+        <variable
+            name="handlers"
+            type="com.babapanda.gitpr.base.BaseHandler" />
+    </data>
+
+    <com.google.android.material.button.MaterialButton
+        style="@style/ButtonRetryStyle"
+        android:id="@+id/btn_load_more"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/margin_56dp"
+        android:layout_margin="@dimen/margin_8dp"
+        android:onClick="@{v -> handlers.onclick(v,null)}"
+        android:text="@string/text_load_more" />
+</layout>

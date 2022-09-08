@@ -6,117 +6,120 @@
     <data>
 
         <variable
-            name="handler"
+            name="viewModel"
+            type="com.babapanda.gitpr.presentation.ui.main.MainViewModel" />
+
+        <variable
+            name="obj"
+            type="com.babapanda.gitpr.presentation.model.MainUiModel" />
+
+        <variable
+            name="handlers"
             type="com.babapanda.gitpr.base.BaseHandler" />
     </data>
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/refresh"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:context=".MainActivity"
-        tools:showIn="@layout/activity_main">
+        android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <Button
+            android:id="@+id/retry"
+            style="@style/ButtonRetryStyle"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/margin_48dp"
+            android:layout_margin="@dimen/margin_16dp"
+            android:background="@drawable/rectangle_green"
+            android:text="@string/text_retry"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
-            <Button
-                android:id="@+id/retry"
-                style="@style/ButtonRetryStyle"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/margin_48dp"
-                android:layout_margin="@dimen/margin_16dp"
-                android:background="@drawable/rectangle_green"
-                android:text="@string/text_retry"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+        <ImageView
+            android:id="@+id/error_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/network_error"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/nointernet_connection" />
 
-            <ImageView
-                android:id="@+id/error_iv"
-                android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/error_title_tv"
+            style="@style/ErrorTitleStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_24dp"
+            android:layout_marginBottom="@dimen/margin_24dp"
+            android:text="@string/text_error_common_title"
+            app:layout_constraintBottom_toTopOf="@id/error_message_tv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/error_message_tv"
+            style="@style/ErrorMessageStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_8dp"
+            android:layout_marginBottom="@dimen/margin_8dp"
+            android:text="@string/text_error_common_message"
+            app:layout_constraintBottom_toTopOf="@id/retry"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/error_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:constraint_referenced_ids="error_iv,error_title_tv,error_message_tv,retry"
+            tools:layout_editor_absoluteY="16dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/repo_recycler_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layoutAnimation="@anim/layout_animation"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:listitem="@layout/item_pr" />
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_view_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:contentDescription="@string/network_error"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/nointernet_connection" />
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/error_title_tv"
-                style="@style/ErrorTitleStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_24dp"
-                android:text="@string/text_error_common_title"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/error_iv" />
+                <include layout="@layout/place_holder" />
 
-            <TextView
-                android:id="@+id/error_message_tv"
-                style="@style/ErrorMessageStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_8dp"
-                android:text="@string/text_error_common_message"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/error_title_tv" />
+                <include layout="@layout/place_holder" />
 
-            <androidx.constraintlayout.widget.Group
-                android:id="@+id/error_group"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                app:constraint_referenced_ids="error_iv,error_title_tv,error_message_tv,retry"
-                tools:layout_editor_absoluteY="16dp" />
+                <include layout="@layout/place_holder" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/repo_recycler_view"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layoutAnimation="@anim/layout_animation"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:listitem="@layout/item_pr" />
+                <include layout="@layout/place_holder" />
 
-            <com.facebook.shimmer.ShimmerFrameLayout
-                android:id="@+id/shimmer_view_container"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:orientation="vertical"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                <include layout="@layout/place_holder" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                <include layout="@layout/place_holder" />
 
-                    <include layout="@layout/place_holder" />
+                <include layout="@layout/place_holder" />
+            </LinearLayout>
 
-                    <include layout="@layout/place_holder" />
+        </com.facebook.shimmer.ShimmerFrameLayout>
 
-                    <include layout="@layout/place_holder" />
-
-                    <include layout="@layout/place_holder" />
-
-                    <include layout="@layout/place_holder" />
-
-                    <include layout="@layout/place_holder" />
-
-                    <include layout="@layout/place_holder" />
-                </LinearLayout>
-
-            </com.facebook.shimmer.ShimmerFrameLayout>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

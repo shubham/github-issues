@@ -6,11 +6,19 @@
     <data>
 
         <variable
+            name="type"
+            type="String" />
+
+        <variable
+            name="position"
+            type="Integer" />
+
+        <variable
             name="obj"
             type="com.babapanda.gitpr.presentation.model.PRUiModel" />
 
         <variable
-            name="handler"
+            name="handlers"
             type="com.babapanda.gitpr.base.BaseHandler" />
 
     </data>
@@ -19,22 +27,48 @@
         android:id="@+id/item_repo_parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/white"
-        android:clickable="true"
-        android:focusable="true"
-        android:paddingTop="@dimen/margin_16dp"
-        android:paddingBottom="@dimen/margin_16dp">
+        android:background="@drawable/rectangle_green"
+        android:layout_marginStart="@dimen/margin_16dp"
+        android:layout_marginEnd="@dimen/margin_16dp"
+        android:layout_marginTop="@dimen/margin_8dp"
+        android:layout_marginBottom="@dimen/margin_8dp">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/start_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="@dimen/margin_16dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/end_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="@dimen/margin_16dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/bottom_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_end="@dimen/margin_8dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/top_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="@dimen/margin_8dp" />
 
         <ImageView
             android:id="@+id/iv_repo"
             android:layout_width="@dimen/margin_100dp"
             android:layout_height="@dimen/margin_100dp"
-            android:layout_marginStart="@dimen/margin_16dp"
-            android:contentDescription="@string/text_repo_image"
             app:imageUrl="@{obj.avatarUrl}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/bottom_guideline"
+            app:layout_constraintStart_toStartOf="@id/start_guideline"
+            app:layout_constraintTop_toTopOf="@id/top_guideline"
             app:placeholder="@{@drawable/ic_launcher}"
             tools:srcCompat="@mipmap/ic_launcher_round" />
 
@@ -45,8 +79,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_16dp"
             android:text="@{obj.userName}"
+            app:layout_constraintEnd_toEndOf="@id/end_guideline"
             app:layout_constraintStart_toEndOf="@+id/barrier"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="@id/top_guideline"
             tools:text="@string/app_name" />
 
         <TextView
@@ -57,6 +92,7 @@
             android:layout_marginStart="@dimen/margin_16dp"
             android:layout_marginTop="@dimen/margin_6dp"
             android:text="@{obj.repoName}"
+            app:layout_constraintEnd_toEndOf="@id/end_guideline"
             app:layout_constraintStart_toEndOf="@+id/barrier"
             app:layout_constraintTop_toBottomOf="@id/tv_author"
             tools:text="@string/app_name" />
@@ -81,7 +117,7 @@
             android:layout_marginStart="@dimen/margin_16dp"
             android:layout_marginTop="@dimen/margin_8dp"
             android:text="@{obj.createDate}"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/end_guideline"
             app:layout_constraintStart_toEndOf="@+id/created_date"
             app:layout_constraintTop_toBottomOf="@id/tv_repo" />
 
@@ -95,7 +131,8 @@
             android:text="@string/text_closed_date"
             app:layout_constraintEnd_toStartOf="@id/tv_closed_date"
             app:layout_constraintStart_toEndOf="@+id/barrier"
-            app:layout_constraintTop_toBottomOf="@id/created_date" />
+            app:layout_constraintBottom_toBottomOf="@id/bottom_guideline"
+            app:layout_constraintTop_toBottomOf="@id/tv_created_date" />
 
         <TextView
             android:id="@+id/tv_closed_date"
@@ -105,9 +142,10 @@
             android:layout_marginStart="@dimen/margin_16dp"
             android:layout_marginTop="@dimen/margin_8dp"
             android:text="@{obj.closedDate}"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/end_guideline"
             app:layout_constraintStart_toEndOf="@+id/closed_date"
-            app:layout_constraintTop_toBottomOf="@id/created_date" />
+            app:layout_constraintBottom_toBottomOf="@id/bottom_guideline"
+            app:layout_constraintTop_toBottomOf="@id/tv_created_date" />
 
         <androidx.constraintlayout.widget.Barrier
             android:id="@+id/barrier"

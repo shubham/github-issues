@@ -1,11 +1,10 @@
 package com.babapanda.gitpr.base
 
 import androidx.lifecycle.ViewModel
-import com.babapanda.gitpr.util.ResourceProvider
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.BehaviorSubject
 
-open class BaseViewModel(private val resourceProvider: ResourceProvider) : ViewModel() {
+open class BaseViewModel() : ViewModel() {
 
     var dialogLoadingObservable: BehaviorSubject<String> = BehaviorSubject.create<String>()
     var apiCallInProgress: Boolean = false

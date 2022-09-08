@@ -1,7 +1,6 @@
 package com.babapanda.gitpr.presentation.ui.main
 
 import androidx.lifecycle.MutableLiveData
-import com.babapanda.gitpr.R
 import com.babapanda.gitpr.base.BaseViewModel
 import com.babapanda.gitpr.domain.model.PullRequest
 import com.babapanda.gitpr.domain.usecase.GetClosePRUseCase
@@ -10,17 +9,18 @@ import com.babapanda.gitpr.presentation.model.StatesData
 import com.babapanda.gitpr.presentation.model.DefaultState
 import com.babapanda.gitpr.presentation.model.PaginationState
 import com.babapanda.gitpr.presentation.model.ErrorState
+import com.babapanda.gitpr.presentation.model.LoadMoreUiModel
 import com.babapanda.gitpr.presentation.model.PRUiModel
 import com.babapanda.gitpr.util.Resource
-import com.babapanda.gitpr.util.ResourceProvider
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
+@HiltViewModel
 class MainViewModel @Inject constructor(
-    private val getClosePRUseCase: GetClosePRUseCase,
-    private val resourceProvider: ResourceProvider,
-) : BaseViewModel(resourceProvider) {
+    private val getClosePRUseCase: GetClosePRUseCase
+) : BaseViewModel() {
     companion object {
         private const val MAX_ALLOWED = 30
     }
@@ -74,6 +74,7 @@ class MainViewModel @Inject constructor(
         val currentPageNumber = getCurrentLoadedPageNo().plus(1)
         val allItemsAreLoaded = currentItems.size < MAX_ALLOWED
         data?.let {
+           // if (currentItems.size > 1) currentItems.removeLast()
             currentItems.addAll(it.map { pr ->
                 PRUiModel(
                     closedDate = pr.closedDate ?: "",
@@ -84,6 +85,8 @@ class MainViewModel @Inject constructor(
                 )
             })
         }
+        // adding load more
+      //  currentItems.add(LoadMoreUiModel())
         stateLiveData.value = DefaultState(currentPageNumber, currentItems, allItemsAreLoaded)
     }
 
@@ -91,7 +94,7 @@ class MainViewModel @Inject constructor(
         val pageNum = stateLiveData.value?.pageNo ?: 1
         stateLiveData.value = ErrorState(
             errorMessage = error?.message
-                ?: resourceProvider.getString(R.string.text_error_common_title),
+                ?: "Something went Wrong",
             pageNo = pageNum,
             loadedAllItems = areCurrentItemsLoaded(),
             data = currentLoadedItems()

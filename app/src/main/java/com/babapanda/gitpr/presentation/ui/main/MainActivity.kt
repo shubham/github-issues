@@ -3,7 +3,9 @@ package com.babapanda.gitpr.presentation.ui.main
 import android.os.Bundle
 import com.babapanda.gitpr.R
 import com.babapanda.gitpr.base.BaseActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

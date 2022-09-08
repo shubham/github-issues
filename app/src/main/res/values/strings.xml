@@ -14,4 +14,5 @@
     <string name="text_created_date">Created Date - </string>
     <string name="text_sort_by_name">Sort by name</string>
     <string name="text_sort_by_stars">Sort by stars</string>
+    <string name="text_load_more">Load More</string>
 </resources>

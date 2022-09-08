@@ -1,12 +1,12 @@
 package com.babapanda.gitpr.di
 
-import android.content.Context
 import com.babapanda.gitpr.data.api.ApiService
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
-import okhttp3.Cache
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -15,6 +15,7 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
+@InstallIn(SingletonComponent::class)
 class NetworkModule {
     companion object {
         private const val timeOut: Long = 15
@@ -34,11 +35,8 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun okHttpClient(
-        context: Context
-    ): OkHttpClient {
+    fun providesOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
-            .cache(Cache(context.cacheDir, CACHE_SIZE))
             .connectTimeout(timeOut, TimeUnit.SECONDS)
             .readTimeout(timeOut, TimeUnit.SECONDS)
             .build()
@@ -46,7 +44,7 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun retrofit(gson: Gson, okHttpClient: OkHttpClient): Retrofit {
+    fun provideRetrofit(gson: Gson, okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
             .baseUrl(getBaseUrl())
             .addConverterFactory(GsonConverterFactory.create(gson))
